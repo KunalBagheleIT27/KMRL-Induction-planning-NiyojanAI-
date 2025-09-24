@@ -1,0 +1,160 @@
+.welcome-outer {
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #d9dde2;
+  overflow: hidden;
+}
+
+.welcome-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #111;
+  color: #fff;
+}
+.hero-bg {
+  /* Background image path now provided inline via style: url(/welcome-illustration.png) */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.overlay-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.08), rgba(0,0,0,.65));
+}
+.welcome-content {
+  position: relative;
+  max-width: 1000px;
+  padding: 2rem 2.5rem 3.5rem;
+  z-index: 2;
+  animation: fadeSlide .9s ease;
+}
+.welcome-heading {
+  font-size: clamp(3rem, 9vw, 6rem);
+  line-height: .9;
+  margin: 0 0 1.4rem;
+  font-weight: 300;
+  letter-spacing: .5px;
+}
+.welcome-heading .line1 {
+  display: block;
+  font-weight: 300;
+  opacity: .95;
+}
+.welcome-heading .line2 {
+  display: block;
+  font-weight: 700;
+  margin-top: .35rem;
+}
+.highlight {
+  background: linear-gradient(100deg,#78ff9b,#1bb3ff 45%,#0a86d1);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 4px 18px rgba(0,180,255,.45));
+}
+.welcome-tagline {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 400;
+  max-width: 720px;
+  margin: 0 auto 2.2rem;
+  line-height: 1.35;
+  text-shadow: 0 2px 6px rgba(0,0,0,.55);
+}
+.cta-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+.cta-primary {
+  background: linear-gradient(135deg,#009688,#006064);
+  border: none;
+  color: #fff;
+  padding: 1rem 2.4rem;
+  font-size: 1.1rem;
+  letter-spacing: .5px;
+  border-radius: 48px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 10px 28px -6px rgba(0,150,136,.55),0 4px 10px -2px rgba(0,0,0,.4);
+  transition: transform .35s cubic-bezier(.23,1,.32,1), box-shadow .3s ease, background .3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.cta-primary:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(125deg,rgba(255,255,255,.2),rgba(255,255,255,0));
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+.cta-primary:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 42px -12px rgba(0,150,136,.65),0 6px 18px -4px rgba(0,0,0,.4);
+}
+.cta-primary:hover:before {
+  opacity: 1;
+}
+.cta-secondary {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 2px solid rgba(255,255,255,.35);
+  color: #fff;
+  padding: 1rem 2.4rem;
+  font-size: 1.05rem;
+  letter-spacing: .5px;
+  border-radius: 48px;
+  cursor: pointer;
+  font-weight: 600;
+  position: relative;
+  transition: background .35s ease, transform .35s cubic-bezier(.23,1,.32,1), border-color .35s ease;
+  box-shadow: 0 6px 20px -6px rgba(0,0,0,.55);
+}
+.cta-secondary:hover {
+  background: rgba(255,255,255,0.16);
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,.6);
+}
+@keyframes fadeSlide {
+  from {
+    opacity:0;
+    transform: translate3d(0,30px,0);
+  }
+  to {
+    opacity:1;
+    transform: translate3d(0,0,0);
+  }
+}
+@media (max-width: 640px){
+  .welcome-heading {
+    font-size: clamp(2.6rem,10vw,4.2rem);
+  }
+  .welcome-tagline {
+    font-size: 1rem;
+  }
+  .cta-primary {
+    width: 100%;
+  }
+  .cta-secondary {
+    width: 100%;
+  }
+}
+.logo {
+  width: 320px;   /* larger logo for welcome page */
+  height: auto;   /* keep proportions */
+  margin-bottom: 1rem; /* optional spacing */
+}
+
+@media (max-width: 640px) {
+  .logo {
+    width: 160px; /* mobile-friendly size */
+  }
+}

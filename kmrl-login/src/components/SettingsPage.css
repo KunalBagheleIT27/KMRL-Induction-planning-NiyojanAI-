@@ -1,0 +1,219 @@
+.app-background {
+  min-height: 100vh;
+  background-image: url('../assets/opti-rake-logo.jpeg');
+  background-repeat: no-repeat;
+  background-position: 0% 50%;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: #f0f6f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: zoomSlide 12s ease-in-out infinite;
+}
+
+.login-container {
+  background: #e0f7f7;
+  padding: 2.7rem 3.5rem;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 82, 155, 0.17);
+  max-width: 520px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #004d4d;
+}
+
+.section-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #008080;
+  margin-bottom: 1.4rem;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.settings-section {
+  background: white;
+  border-radius: 18px;
+  padding: 1.6rem 2.2rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 8px 26px rgba(0, 128, 128, 0.12);
+}
+
+.settings-header {
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: #005e5e;
+  margin-bottom: 15px;
+  letter-spacing: .5px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.settings-section label {
+  display: block;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem 0;
+  color: #004d4d;
+}
+
+.settings-section input[type="password"],
+.settings-section input[type="number"],
+.settings-section select {
+  width: 100%;
+  padding: 0.55rem 0.8rem;
+  border-radius: 6px;
+  border: 1.5px solid #03a9f4;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  color: #004d4d;
+  margin-top: 6px;
+  margin-bottom: 10px;
+}
+
+.settings-section input:focus,
+.settings-section select:focus {
+  border-color: #008080;
+  box-shadow: 0 0 5px 2px rgba(0, 128, 128, 0.2);
+}
+
+.settings-hint {
+  color: #666;
+  font-size: .97rem;
+  margin-left: 8px;
+}
+
+.settings-number-input {
+  width: 100px;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+/* Toggle switch for notifications */
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #b8e3e3;
+  border-radius: 24px;
+  transition: .4s;
+}
+.switch input:checked + .slider {
+  background-color: #03a9f4;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .4s;
+}
+.switch input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* Save Settings Button */
+.save-btn {
+  font-size: 1.25rem;
+  padding: 18px 0;
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px; /* Slightly less rounded for professional look */
+  background: linear-gradient(135deg, #b269f1); /* Softer gradient */
+  color: #fff;
+  box-shadow: none; /* Remove heavy shadow for minimal look */
+  border: none; /* No border */
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+.save-btn:hover {
+  background: linear-gradient(135deg, #006666, #005e5e); /* Slightly darker on hover */
+}
+
+/* Logout Button */
+.logout-btn {
+  background: #f46767; /* Solid dark red for professionalism */
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 16px 0;
+  border-radius: 8px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  box-shadow: none; /* Remove glow/shadow for minimalism */
+  transition: background 0.3s ease;
+  letter-spacing: 0.5px;
+}
+.logout-btn:hover {
+  background: #d93b43; /* Slightly lighter on hover */
+}
+
+.contact-btn {
+  background: linear-gradient(135deg, #03a9f4, #008080);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 14px 0;
+  border-radius: 18px;
+  width: 80%;
+  margin: 0 auto 10px auto;
+  box-shadow: 0 5px 16px rgba(3, 169, 244, 0.21);
+  text-align: center;
+  letter-spacing: 1px;
+  display: block;
+}
+
+.contact-btn:hover {
+  background: linear-gradient(135deg, #008080, #03a9f4);
+  box-shadow: 0 8px 22px rgba(3, 169, 244, 0.29);
+}
+
+@media screen and (max-width: 600px) {
+  .login-container {
+    max-width: 98vw;
+    padding: 1.2rem 0.5rem;
+  }
+  .settings-section {
+    padding: 1rem 0.5rem;
+  }
+}

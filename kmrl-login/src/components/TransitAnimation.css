@@ -1,0 +1,61 @@
+.transit-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5,10,20,0.55);
+  z-index: 9999;
+}
+
+.train-wrap {
+  width: 240px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.train {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transform: translateX(-220px);
+  animation: train-move 1s ease-in-out forwards;
+}
+
+.engine {
+  width: 64px;
+  height: 48px;
+  background: linear-gradient(180deg,#007d7d,#005e5e);
+  border-radius: 6px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+
+.carriage {
+  width: 56px;
+  height: 40px;
+  background: linear-gradient(180deg,#00b3b3,#008f8f);
+  border-radius: 6px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+}
+
+.wheels {
+  display: flex;
+  gap: 8px;
+  margin-left: 8px;
+}
+
+.wheel {
+  width: 12px;
+  height: 12px;
+  background: #222;
+  border-radius: 50%;
+  box-shadow: inset 0 -4px 0 rgba(255,255,255,0.05);
+}
+
+@keyframes train-move {
+  0% { transform: translateX(-260px); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateX(260px); opacity: 1; }
+}

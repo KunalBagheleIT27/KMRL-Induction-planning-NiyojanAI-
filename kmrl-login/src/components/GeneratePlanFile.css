@@ -1,0 +1,235 @@
+/* Container */
+.plan-generator-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  font-family: "Inter", system-ui, sans-serif;
+  color: #0f172a;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Header */
+.header-section {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #64748b;
+}
+
+/* File Upload Zone */
+.file-upload-zone {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  border: 2px dashed #14b8a6;
+  border-radius: 16px;
+  background: #f0fdfa;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.file-label:hover {
+  background: #ccfbf1;
+  border-color: #0d9488;
+  transform: scale(1.02);
+}
+
+.file-instructions {
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+
+.file-instructions span {
+  font-weight: 600;
+  color: #0d9488;
+}
+
+.file-type {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.file-name-display {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.file-name-display span {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Generate Button */
+.generate-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #14b8a6, #0f766e);
+  box-shadow: 0 6px 18px rgba(20, 184, 166, 0.4);
+  transition: all 0.3s ease;
+}
+
+.generate-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0d9488, #0f766e);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(20, 184, 166, 0.5);
+}
+
+.generate-btn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Error Message */
+.error-message {
+  color: #dc2626;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* Results Section */
+.results-container {
+  margin-top: 40px;
+  animation: slideUp 0.5s ease-in-out;
+}
+
+.results-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #0f172a;
+}
+
+/* Table */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.results-table thead {
+  background: #14b8a6;
+  color: #fff;
+  font-weight: 600;
+}
+
+.results-table th,
+.results-table td {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.results-table tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.results-table tbody tr:hover {
+  background: #ecfeff;
+  transition: background 0.2s ease;
+}
+/* 🔹 Small professional icons for desktop */
+.file-label svg,
+.results-table th svg {
+  width: 20px;   /* smaller size */
+  height: 20px;
+  margin-right: 6px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* Proper spacing for table header icons */
+.results-table th {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+
+/* 🎨 Gradient Effect ONLY for Generate Plan Button */
+.generate-btn {
+  background: linear-gradient(135deg, #14b8a6, #3b82f6, #9333ea);
+  background-size: 300% 300%;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.generate-btn:hover {
+  background-position: right center; /* smooth gradient shift */
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

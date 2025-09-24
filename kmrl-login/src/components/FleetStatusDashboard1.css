@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap');
+
+/* === Main Layout & Container === */
+:root {
+    --bg-color: #eef2ff; /* New light blue background from your image */
+    --card-bg-color: #ffffff;
+    --border-color: #e5e7eb;
+    --header-text-color: #111827; /* Darker for more contrast */
+    --body-text-color: #374151;
+    --subtle-text-color: #6b7280;
+    --green: #10b981; /* A more vibrant green */
+    --red: #ef4444; /* A modern red */
+    --yellow: #f59e0b;
+    --blue: #3b82f6; /* A professional blue */
+    --header-bg-color: #f9fafb; /* Light background for table header */
+}
+
+.dashboard-container {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    padding: 3rem;
+    color: var(--body-text-color);
+}
+
+.dashboard-header {
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+.dashboard-header h1 {
+    font-size: 2.25rem; /* 36px */
+    font-weight: 700;
+    color: var(--header-text-color);
+    letter-spacing: -0.5px;
+}
+
+.dashboard-header p {
+    color: var(--subtle-text-color);
+    margin-top: 0.5rem;
+    font-size: 1.1rem; /* 17.6px */
+}
+
+/* === Table Card Styling === */
+.table-container {
+    background-color: var(--card-bg-color);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.1); /* Enhanced, professional shadow */
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.fleet-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* === Enhanced Table Header === */
+.fleet-table th {
+    background-color: var(--header-bg-color);
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    font-family: 'Inter', sans-serif; /* Professional font for headers */
+    font-size: 0.9rem; /* 14.4px for visibility */
+    font-weight: 700; /* Bolder for visibility */
+    color: #000000; /* Black for maximum contrast */
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* === Table Row & Cell Styling === */
+.train-row {
+    border-bottom: 1px solid #f3f4f6; /* Very light row separator */
+    transition: background-color 0.2s ease-in-out; /* Removed transform animation */
+}
+
+.train-row:hover {
+    background-color: #f9fafb; /* Keep hover color for usability */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    z-index: 10;
+    position: relative;
+}
+
+.train-row:last-child {
+    border-bottom: none;
+}
+
+.cell {
+    padding: 1.25rem 1.5rem;
+    font-size: 1rem; /* 16px for better data visibility */
+    vertical-align: middle;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.cell:first-child {
+    font-weight: 600;
+    color: var(--header-text-color);
+}
+
+/* === Specific Cell Components === */
+
+/* Decision Pills */
+.decision-pill {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+}
+
+.decision-service {
+    background: linear-gradient(to right, #d1fae5, #a7f3d0);
+    color: #065f46;
+    border-color: #6ee7b7;
+}
+
+.decision-maintenance {
+    background: linear-gradient(to right, #fee2e2, #fecaca);
+    color: #991b1b;
+    border-color: #fca5a5;
+}
+
+.decision-standby {
+    background: linear-gradient(to right, #ffedd5, #fed7aa);
+    color: #9a3412;
+    border-color: #fdba74;
+}
+
+/* Icons */
+.fitness-icons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.icon-green { color: var(--green); width: 1.5rem; height: 1.5rem; }
+.icon-red { color: var(--red); width: 1.5rem; height: 1.5rem; }
+.icon-yellow { color: var(--yellow); width: 1.5rem; height: 1.5rem; }
+
+/* Job Card & Cleaning Cells */
+.job-card-cell, .cleaning-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Branding & Stabling Text */
+.branding-hours, .stabling-bay {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--header-text-color);
+}
+
+.stabling-time {
+    color: var(--subtle-text-color);
+    font-size: 0.85rem;
+}
+
+/* Issues Cell */
+.issues-cell {
+    text-align: center;
+}
+
+.issues-none {
+    color: var(--green);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.issues-count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 8px; /* Changed from 50% to squared-off */
+    background: linear-gradient(145deg, var(--red), #991b1b);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 700;
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.4);
+    border: 2px solid white;
+}
+
+/* === Footer Styling === */
+.dashboard-footer {
+    background-color: #f9fafb;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--subtle-text-color);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-label {
+    font-weight: 600;
+    color: var(--body-text-color);
+}
+
+/* === Loading/Error Message Styling === */
+.message-cell {
+    padding: 4rem;
+    text-align: center;
+    color: var(--subtle-text-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.error-cell {
+    color: var(--red);
+    font-weight: 600;
+}
