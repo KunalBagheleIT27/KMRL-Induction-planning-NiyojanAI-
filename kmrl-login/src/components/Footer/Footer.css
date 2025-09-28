@@ -1,14 +1,14 @@
 :root{
   --footer-bg: #0b2a3a; /* deep teal for contrast */
   --footer-fg: #ffffff;
-  --footer-accent: #2fb26b; /* green accent */
+  --footer-accent: black; /* green accent */
 }
 
 .site-footer{
   color: var(--footer-fg);
   padding: 36px 18px 18px;
   font-family: 'Poppins', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  background: linear-gradient(135deg, #062d3a 0%, #0b2a3a 40%, #073b2c 100%);
+  background: linear-gradient(135deg, #03b6f8 0%, #0275af 40%, #10d59d 100%);
   position: relative;
   overflow: hidden;
 }

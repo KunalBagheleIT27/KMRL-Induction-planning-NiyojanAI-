@@ -51,7 +51,6 @@ export default function Footer() {
           <ul>
             <li><a href="https://kochimetro.org" target="_blank" rel="noopener noreferrer">About Kochi Metro</a></li>
             <li><a href="mailto:info@kochimetro.org">Contact support</a></li>
-            <li><a href="https://github.com/KunalBagheleIT27/KMRL-Induction-planning-NiyojanAI-" target="_blank" rel="noopener noreferrer">Project Repository</a></li>
           </ul>
         </div>
       </div>
