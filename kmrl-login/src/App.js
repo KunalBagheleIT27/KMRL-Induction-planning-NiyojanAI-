@@ -12,10 +12,15 @@ import SettingsPage from "./components/SettingsPage.js";
 import FleetStatusDashboard from './components/FleetStatusDashboard.js';
 import HistoryPage from "./components/HistoryPage.js";
 import Footer from "./components/Footer/Footer.js";
+import './i18n';
+import LanguageSwitcher from './components/LanguageSwitcher';
 
 function App() {
   return (
     <Router>
+      <div style={{display:'flex',justifyContent:'flex-end',padding:'10px 18px'}}>
+        <LanguageSwitcher />
+      </div>
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/login" element={<LoginPage />} />
