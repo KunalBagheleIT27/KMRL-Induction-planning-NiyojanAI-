@@ -11,6 +11,7 @@ import RecommendedPlan from "./components/RecommendedPlan.js";
 import SettingsPage from "./components/SettingsPage.js";
 import FleetStatusDashboard from './components/FleetStatusDashboard.js';
 import HistoryPage from "./components/HistoryPage.js";
+import Footer from "./components/Footer/Footer.js";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/history" element={<HistoryPage />} />
         {/* Add other routes here */}
       </Routes>
+      <Footer />
     </Router>
   );
 }
