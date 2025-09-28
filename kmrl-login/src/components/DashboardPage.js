@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation } from "react-router-dom";
 import "./DashboardPage.css";
 import metroLogo from "../assets/kmrl-logo.jpeg";
 
 export default function DashboardPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -173,8 +175,8 @@ export default function DashboardPage() {
       {/* Main Content */}
       <main className="main-content">
         <header className="page-header">
-          <h1>Welcome back, Supervisor</h1>
-          <p>Monitor and manage your metro fleet operations</p>
+          <h1>{t('dashboard.welcomeBack', 'Welcome back, Supervisor')}</h1>
+          <p>{t('dashboard.sub', 'Monitor and manage your metro fleet operations')}</p>
         </header>
 
         {/* Fleet Overview (Dynamic) */}
@@ -185,15 +187,15 @@ export default function DashboardPage() {
             <p className="error">{error}</p>
           ) : (
             <>
-              <div className="card total-fleet">
-                <h3>Total Fleet   🚆</h3>
+                <div className="card total-fleet">
+                  <h3>{t('dashboard.totalFleet','Total Fleet')}   🚆</h3>
                 <span className="count">{totalFleet}</span>
                 <span role="img" aria-label="Total Fleet">   
                   
                 </span>
               </div>
               <div className="card ready-fleet">
-                <h3>Ready for Service   ✔</h3>
+                  <h3>{t('dashboard.readyForService','Ready for Service')}   ✔</h3>
                 <span className="count green">
                   {revenueCount} / {totalFleet}
                 </span>
@@ -202,7 +204,7 @@ export default function DashboardPage() {
                 </span>
               </div>
               <div className="card maintenance-fleet">
-                <h3>Needs Maintenance   🔧</h3>
+                  <h3>{t('dashboard.needsMaintenance','Needs Maintenance')}</h3>
                 <span className="count red">
                   {maintenanceCount} / {totalFleet}
                 </span>
@@ -211,7 +213,7 @@ export default function DashboardPage() {
                 </span>
               </div>
               <div className="card standby-fleet">
-                <h3>On Standby ⏸</h3>
+                  <h3>{t('dashboard.onStandby','On Standby')}</h3>
                 <span className="count orange">
                   {standbyCount} / {totalFleet}
                 </span>
@@ -226,7 +228,7 @@ export default function DashboardPage() {
         {/* Alerts & Notifications (kept static for now) */}
         {/* Alerts & Notifications */}
         <section className="alerts-section">
-          <h2>Alerts & Notifications</h2>
+          <h2>{t('alerts.title','Alerts & Notifications')}</h2>
           <div className="alerts-grid">
             {[
               {
@@ -278,7 +280,7 @@ export default function DashboardPage() {
 
         {/* Key Operational Parameters */}
         <section className="parameters-dashboard">
-          <h2 className="parameters-heading">Key Operational Parameters</h2>
+          <h2 className="parameters-heading">{t('parameters.heading','Key Operational Parameters')}</h2>
           <div className="parameters-cards-grid">
             <div className="param-card">
               <div className="param-card-header">
@@ -289,7 +291,7 @@ export default function DashboardPage() {
                 >
                   ⏱
                 </span>
-                <h3>Fitness Certificate Status</h3>
+                  <h3>{t('parameters.fitness','Fitness Certificate Status')}</h3>
               </div>
               <p className="param-sub">Parameters tracked:</p>
               <ul>
@@ -307,7 +309,7 @@ export default function DashboardPage() {
                 >
                   🛠
                 </span>
-                <h3>Job-Card Status</h3>
+                <h3>{t('parameters.jobcard','Job-Card Status')}</h3>
               </div>
               <p className="param-sub">Parameters tracked:</p>
               <ul>
@@ -324,7 +326,7 @@ export default function DashboardPage() {
                 >
                   ⭐
                 </span>
-                <h3>Branding Priorities</h3>
+                <h3>{t('parameters.branding','Branding Priorities')}</h3>
               </div>
               <p className="param-sub">Parameters tracked:</p>
               <ul>
@@ -342,7 +344,7 @@ export default function DashboardPage() {
                 >
                   📊
                 </span>
-                <h3>Mileage Balancing</h3>
+                <h3>{t('parameters.mileage','Mileage Balancing')}</h3>
               </div>
               <p className="param-sub">Parameters tracked:</p>
               <ul>
@@ -359,7 +361,7 @@ export default function DashboardPage() {
                 >
                   💧
                 </span>
-                <h3>Cleaning & Detailing Slots</h3>
+                <h3>{t('parameters.cleaning','Cleaning & Detailing Slots')}</h3>
               </div>
               <p className="param-sub">Parameters tracked:</p>
               <ul>
@@ -376,7 +378,7 @@ export default function DashboardPage() {
                 >
                   🗂
                 </span>
-                <h3>Stabling Geometry</h3>
+                <h3>{t('parameters.stabling','Stabling Geometry')}</h3>
               </div>
               <p className="param-sub">Parameters tracked:</p>
               <ul>

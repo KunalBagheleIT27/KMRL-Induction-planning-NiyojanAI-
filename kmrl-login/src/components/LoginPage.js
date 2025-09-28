@@ -1,45 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import "./LoginPage.css";
 import kmrlLogo from "../assets/kmrl-logo.jpeg";
 
-const translations = {
-  en: {
-    supervisorLogin: "Supervisor Login",
-    usernameLabel: "Username / Employee ID",
-    usernamePlaceholder: "Enter your ID",
-    passwordLabel: "Password",
-    passwordPlaceholder: "Enter your password",
-    loginButton: "Login",
-    forgotPasswordLink: "Forgot Password?",
-    footer: "© Kochi Metro Rail Limited",
-    toggleButton: "മലയാളം",
-    noAccount: "Don’t have an account?",
-    signup: "Sign Up",
-  },
-  ml: {
-    supervisorLogin: "സൂപ്പർവൈസർ ലോഗിൻ",
-    usernameLabel: "ഉപയോക്തൃനാമം / എംപ്ലോയീ ഐഡി",
-    usernamePlaceholder: "നിങ്ങളുടെ ഐഡി നൽകുക",
-    passwordLabel: "പാസ്വേഡ്",
-    passwordPlaceholder: "നിങ്ങളുടെ പാസ്വേഡ് നൽകുക",
-    loginButton: "ലോഗിൻ ചെയ്യുക",
-    forgotPasswordLink: "പാസ്വേഡ് മറന്നോ?",
-    footer: "© കൊച്ചി മെട്രോ റെയിൽ ലിമിറ്റഡ്",
-    toggleButton: "English",
-    noAccount: "അക്കൗണ്ട് ഇല്ലേ?",
-    signup: "സൈൻ അപ്പ്",
-  },
-};
-
 export default function LoginPage() {
+  const { t, i18n } = useTranslation();
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
-  const [language, setLanguage] = useState("en");
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
-  const T = translations[language];
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -68,16 +39,17 @@ export default function LoginPage() {
   };
 
   const toggleLanguage = () => {
-    setLanguage(language === "en" ? "ml" : "en");
+    const next = i18n.language === 'en' ? 'ml' : 'en';
+    i18n.changeLanguage(next);
   };
 
-  const cardClassName = `login-card ${language === "ml" ? "malayalam-active" : ""}`;
+  const cardClassName = `login-card ${i18n.language === "ml" ? "malayalam-active" : ""}`;
 
   return (
     <div className="app-background">
       <div className="language-toggle-fixed">
         <button onClick={toggleLanguage} className="language-toggle-btn">
-          {T.toggleButton}
+          {i18n.language === 'en' ? 'മലയാളം' : 'English'}
         </button>
       </div>
 
@@ -87,42 +59,42 @@ export default function LoginPage() {
         </header>
 
         <div className={cardClassName}>
-          <h2>{T.supervisorLogin}</h2>
+          <h2>{t('login.supervisorLogin', 'Supervisor Login')}</h2>
           <form onSubmit={handleLogin}>
             <label>
-              {T.usernameLabel}
+              {t('login.usernameLabel', 'Username / Employee ID')}
               <input
                 type="text"
                 value={userId}
                 onChange={(e) => setUserId(e.target.value)}
-                placeholder={T.usernamePlaceholder}
+                placeholder={t('login.usernamePlaceholder', 'Enter your ID')}
                 required
               />
             </label>
             <label>
-              {T.passwordLabel}
+              {t('login.passwordLabel', 'Password')}
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder={T.passwordPlaceholder}
+                placeholder={t('login.passwordPlaceholder', 'Enter your password')}
                 required
               />
             </label>
             {error && <div style={{ color: "#c62828", fontSize: ".85rem" }}>{error}</div>}
-            <button type="submit">{T.loginButton}</button>
+            <button type="submit">{t('login.loginButton','Login')}</button>
           </form>
 
           <div className="forgot">
-            <Link to="/forgot-password">{T.forgotPasswordLink}</Link>
+            <Link to="/forgot-password">{t('login.forgotPasswordLink', 'Forgot Password?')}</Link>
           </div>
 
           <div className="register">
-            {T.noAccount} <Link to="/signup">{T.signup}</Link>
+            {t('login.noAccount','Don’t have an account?')} <Link to="/signup">{t('login.signup','Sign Up')}</Link>
           </div>
         </div>
 
-        <footer>{T.footer}</footer>
+        <footer>{t('footer.copyright','© Kochi Metro Rail Limited')}</footer>
       </div>
     </div>
   );

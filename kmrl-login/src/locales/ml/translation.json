@@ -1,9 +1,43 @@
 {
-  "welcome": "സ്വാഗതം",
-  "login": "ലോഗിൻ",
-  "logout": "ലോഗൗട്ട്",
-  "dashboard": "ഡാഷ്ബോർഡ്",
   "search": "ട്രെയിനുകൾ തിരയുക...",
   "history": "ചരിത്രം & പഠന വിശകലനം",
-  "contact": "അവസാന സഹായം"
+  "contact": "സപ്പോർട്ട്",
+
+  "welcome": {
+    "aria": "WELCOME TO नियोजनAI !",
+    "login": "ലോഗിൻ",
+    "signup": "സൈൻ അപ്പ്"
+  },
+  "footer": {
+    "copyright": "© കൊച്ചി മെട്രോ റെയിൽ ലിമിറ്റഡ്"
+  },
+  "login": {
+    "supervisorLogin": "സൂപ്പർവൈസർ ലോഗിൻ",
+    "usernameLabel": "ഉപയോക്തൃനാമം / എംപ്ലോയീ ഐഡി",
+    "usernamePlaceholder": "നിങ്ങളുടെ ഐഡി നൽകുക",
+    "passwordLabel": "പാസ്വേഡ്",
+    "passwordPlaceholder": "നിങ്ങളുടെ പാസ്വേഡ് നൽകുക",
+    "loginButton": "ലോഗിൻ",
+    "forgotPasswordLink": "പാസ്വേഡ് മറന്നോ?",
+    "noAccount": "അക്കൗണ്ട് ഇല്ലേ?",
+    "signup": "സൈൻ അപ്പ്"
+  },
+  "dashboard": {
+    "welcomeBack": "വീണ്ടും സ്വാഗതം, സൂപ്പർവൈസർ",
+    "sub": "നിങ്ങളുടെ മെട്രോ ഉപയോഗം മേൽനോട്ടം ചെയ്യുക",
+    "totalFleet": "മൊത്തം ട്രെയിനുകൾ",
+    "readyForService": "സർവീസിന് റെഡി",
+    "needsMaintenance": "മെൻറനൻസ് ആവശ്യം",
+    "onStandby": "സ്റ്റാൻഡ്ബൈയിൽ"
+  },
+  "alerts": {"title": "അലേർട്‌സ് & നോട്ടിഫിക്കേഷനുകൾ"},
+  "parameters": {
+    "heading": "പ്രധാന പ്രവർത്തനപരമായ പരിഗണനകൾ",
+    "fitness": "ഫിറ്റ്നസ് സർട്ടിഫിക്കറ്റ് നില",
+    "jobcard": "ജോബ്-കാർഡ് സ്റ്റാറ്റസ്",
+    "branding": "ബ്രാൻഡിംഗ് മുൻഗണനകൾ",
+    "mileage": "മൈലേജ് ബാലൻസിംഗ്",
+    "cleaning": "ക്ലീനിങ് & ഡീറ്റെയിലിംഗ് സ്ലോട്ടുകൾ",
+    "stabling": "സ്റ്റാബ്ലിംഗ് ജിയോമെട്രി"
+  }
 }

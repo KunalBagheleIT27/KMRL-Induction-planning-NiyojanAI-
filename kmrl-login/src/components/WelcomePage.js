@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars, no-useless-computed-key */
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import "./LoginPage.css";
 import kmrlLogo from "../assets/kmrl-logo.jpeg";
 
 // Updated to display: WELCOME TO नियोजनAI ! (with Devanagari segment kept as one grouped span)
 export default function WelcomePage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   let letterIndex = 0; // for stagger timing
   const baseDelay = 0.08;
@@ -39,7 +41,7 @@ export default function WelcomePage() {
       <div
         className="animated-hero dark-hero"
         role="main"
-        aria-label="WELCOME TO नियोजनAI !"
+        aria-label={t('welcome.aria', 'WELCOME TO नियोजनAI !')}
       >
         <header className="animated-hero-header">
           <img src={kmrlLogo} alt="KMRL Logo" className="logo" />
@@ -81,17 +83,17 @@ export default function WelcomePage() {
             className="dark-btn-primary"
             onClick={() => navigate("/login")}
           >
-            Login
+            {t('welcome.login', 'Login')}
           </button>
           <button
             className="dark-btn-secondary"
             onClick={() => navigate("/signup")}
           >
-            Sign Up
+            {t('welcome.signup', 'Sign Up')}
           </button>
         </div>
         <footer className="hero-footer dark-footer">
-          © Kochi Metro Rail Limited
+          {t('footer.copyright', '© Kochi Metro Rail Limited')}
         </footer>
       </div>
     </div>

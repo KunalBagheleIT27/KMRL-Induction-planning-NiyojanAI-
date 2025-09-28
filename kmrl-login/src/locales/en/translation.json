@@ -1,9 +1,43 @@
 {
-  "welcome": "Welcome",
-  "login": "Login",
-  "logout": "Logout",
-  "dashboard": "Dashboard",
   "search": "Search trains...",
   "history": "History & Learning Analytics",
-  "contact": "Contact Support"
+  "contact": "Contact Support",
+
+  "welcome": {
+    "aria": "WELCOME TO नियोजनAI !",
+    "login": "Login",
+    "signup": "Sign Up"
+  },
+  "footer": {
+    "copyright": "© Kochi Metro Rail Limited"
+  },
+  "login": {
+    "supervisorLogin": "Supervisor Login",
+    "usernameLabel": "Username / Employee ID",
+    "usernamePlaceholder": "Enter your ID",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "loginButton": "Login",
+    "forgotPasswordLink": "Forgot Password?",
+    "noAccount": "Don’t have an account?",
+    "signup": "Sign Up"
+  },
+  "dashboard": {
+    "welcomeBack": "Welcome back, Supervisor",
+    "sub": "Monitor and manage your metro fleet operations",
+    "totalFleet": "Total Fleet",
+    "readyForService": "Ready for Service",
+    "needsMaintenance": "Needs Maintenance",
+    "onStandby": "On Standby"
+  },
+  "alerts": {"title": "Alerts & Notifications"},
+  "parameters": {
+    "heading": "Key Operational Parameters",
+    "fitness": "Fitness Certificate Status",
+    "jobcard": "Job-Card Status",
+    "branding": "Branding Priorities",
+    "mileage": "Mileage Balancing",
+    "cleaning": "Cleaning & Detailing Slots",
+    "stabling": "Stabling Geometry"
+  }
 }
