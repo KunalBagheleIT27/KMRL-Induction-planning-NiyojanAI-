@@ -201,45 +201,11 @@ const RecommendedPlan = () => {
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
     const margin = 40;
-    const lineHeight = 16;
-  // contentWidth intentionally omitted (calculated if needed for future layout)
+    const lineHeight = 14;
 
-    // Helpers
-    const drawHeader = (title) => {
-      doc.setFontSize(10);
-      doc.setTextColor(80);
-      doc.text("Kochi Metro Rail Limited", margin + 6, margin - 8);
-
-      doc.setDrawColor(10, 50, 90);
-      doc.setLineWidth(1.5);
-      doc.line(margin, margin + 6, pageWidth - margin, margin + 6);
-
-      doc.setFontSize(14);
-      doc.setFont(undefined, "bold");
-      doc.setTextColor(10, 50, 90);
-      doc.text(title, pageWidth / 2, margin + 26, { align: "center" });
-
-      doc.setFontSize(10);
-      doc.setFont(undefined, "normal");
-      doc.setTextColor(60);
-      doc.text(`Date: ${currentDate}`, pageWidth - margin, margin + 26, {
-        align: "right",
-      });
-    };
-
-    const drawFooter = (pageNum, totalPages) => {
-      const footerY = pageHeight - margin + 10;
-      doc.setDrawColor(200);
-      doc.setLineWidth(0.5);
-      doc.line(margin, footerY - 14, pageWidth - margin, footerY - 14);
-
-      doc.setFontSize(9);
-      doc.setTextColor(100);
-      doc.text("Kochi Metro Rail Limited", margin + 6, footerY);
-      doc.text(`Page ${pageNum} of ${totalPages}`, pageWidth - margin, footerY, {
-        align: "right",
-      });
-    };
+    const headerHeight = 56;
+    const footerHeight = 36;
+    const availableHeight = pageHeight - margin * 2 - headerHeight - footerHeight;
 
     const statusColor = (status) => {
       switch ((status || "").toLowerCase()) {
@@ -254,7 +220,7 @@ const RecommendedPlan = () => {
       }
     };
 
-    // Prepare flat list of trains grouped by category but in one list so pagination is simple
+    // Prepare entries flat list
     const categories = [
       { key: "Service", label: "For Service" },
       { key: "Standby", label: "For Standby" },
@@ -271,93 +237,124 @@ const RecommendedPlan = () => {
       }
     });
 
-    // Pagination pass: write pages incrementally
-  let y = margin + 60;
-  let pageNum = 1;
-  const pages = []; // placeholder to count pages (not required by jsPDF)
-
-    // Start first page
-    doc.setLineWidth(1);
-    doc.setDrawColor(50);
-    doc.rect(margin / 2, margin / 2, pageWidth - margin, pageHeight - margin, "S");
-    drawHeader("Recommended Train Plan");
-
-    // Render entries
-    const flushPage = () => {
-      pages.push(true);
-      // Footer will be drawn after page count is known; for now draw page number placeholder
-      doc.setFontSize(9);
-      drawFooter(pageNum, "");
+    // Estimate heights for pagination
+    const estimateHeight = (entry) => {
+      if (entry.type === "category") return lineHeight * 1.8 + 8; // category header
+      if (entry.type === "train") return lineHeight * 4 + 16; // train block (title + 2 rows + padding)
+      return 8; // spacer
     };
 
-    const addNewPage = () => {
-      flushPage();
-      doc.addPage();
-      pageNum += 1;
-      y = margin + 60;
-      doc.setDrawColor(50);
-      doc.rect(margin / 2, margin / 2, pageWidth - margin, pageHeight - margin, "S");
-      drawHeader("Recommended Train Plan");
-    };
-
-    entries.forEach((entry) => {
-      if (entry.type === "category") {
-        // category header
-        if (y + lineHeight * 2 > pageHeight - margin - 30) addNewPage();
-        doc.setFontSize(12);
-        doc.setFont(undefined, "bold");
-        doc.setTextColor(20);
-        doc.text(entry.label, margin + 6, y);
-        y += lineHeight + 6;
-      } else if (entry.type === "train") {
-        const t = entry.train;
-        const color = statusColor(t.status);
-
-        if (y + lineHeight * 4 > pageHeight - margin - 30) addNewPage();
-
-        // colored left bar
-        doc.setFillColor(...color);
-        doc.rect(margin + 2, y - 12, 6, lineHeight * 3 + 8, "F");
-
-        // Train title row
-        doc.setFontSize(11);
-        doc.setFont(undefined, "bold");
-        doc.setTextColor(30);
-        doc.text(`${t.trainset_id}  —  ${t.status}`, margin + 16, y);
-        y += lineHeight;
-
-        // Details row 1
-        doc.setFontSize(10);
-        doc.setFont(undefined, "normal");
-        doc.setTextColor(60);
-        const leftColX = margin + 16;
-        const rightColX = pageWidth / 2 + 20;
-
-        doc.text(`Branding: ${t.branding_hours} hrs`, leftColX, y);
-        doc.text(`Mileage: ${t.mileage_km} km`, rightColX, y);
-        y += lineHeight;
-
-        // Details row 2
-        doc.text(`Decision: ${t.decision}`, leftColX, y);
-        doc.text(`Date: ${t.date}`, rightColX, y);
-        y += lineHeight + 8;
-      } else if (entry.type === "spacer") {
-        y += 8;
+    // Paginate entries into pages (array of entry arrays)
+    const pages = [];
+    let current = [];
+    let used = 0;
+    entries.forEach((ent) => {
+      const h = estimateHeight(ent);
+      if (used + h > availableHeight && current.length > 0) {
+        pages.push(current);
+        current = [];
+        used = 0;
       }
+      current.push(ent);
+      used += h;
+    });
+    if (current.length) pages.push(current);
+
+    // If no content, still provide one page
+    if (pages.length === 0) pages.push([]);
+
+    // Drawing helpers
+    const drawHeader = (title) => {
+      doc.setFontSize(10);
+      doc.setTextColor(80);
+      doc.text("Kochi Metro Rail Limited", margin, margin - 4);
+
+      doc.setDrawColor(10, 50, 90);
+      doc.setLineWidth(1.2);
+      doc.line(margin, margin + 8, pageWidth - margin, margin + 8);
+
+      doc.setFontSize(16);
+      doc.setFont(undefined, "bold");
+      doc.setTextColor(10, 50, 90);
+      doc.text(title, pageWidth / 2, margin + 30, { align: "center" });
+
+      doc.setFontSize(10);
+      doc.setFont(undefined, "normal");
+      doc.setTextColor(60);
+      doc.text(`Date: ${currentDate}`, pageWidth - margin, margin + 30, { align: "right" });
+    };
+
+    const drawFooter = (pageNum, totalPages) => {
+      const footerY = pageHeight - margin + 6;
+      doc.setDrawColor(220);
+      doc.setLineWidth(0.6);
+      doc.line(margin, footerY - 18, pageWidth - margin, footerY - 18);
+
+      doc.setFontSize(9);
+      doc.setTextColor(100);
+      doc.text("Kochi Metro Rail Limited", margin, footerY - 2);
+      doc.text(`Page ${pageNum} of ${totalPages}`, pageWidth - margin, footerY - 2, { align: "right" });
+    };
+
+    // Render each page
+    pages.forEach((pageEntries, pageIndex) => {
+      if (pageIndex > 0) doc.addPage();
+
+      // border
+      doc.setLineWidth(1);
+      doc.setDrawColor(60);
+      doc.rect(margin / 2, margin / 2, pageWidth - margin, pageHeight - margin, "S");
+
+      drawHeader("Recommended Train Plan");
+
+      // Start y below header
+      let y = margin + headerHeight - 6;
+
+      pageEntries.forEach((entry) => {
+        if (entry.type === "category") {
+          doc.setFontSize(12);
+          doc.setFont(undefined, "bold");
+          doc.setTextColor(20);
+          doc.text(entry.label, margin + 8, y);
+          y += lineHeight * 1.8 + 6;
+        } else if (entry.type === "train") {
+          const t = entry.train;
+          const color = statusColor(t.status);
+
+          // left color bar
+          doc.setFillColor(...color);
+          doc.rect(margin + 6, y - 12, 8, lineHeight * 3 + 10, "F");
+
+          // title
+          doc.setFontSize(11);
+          doc.setFont(undefined, "bold");
+          doc.setTextColor(30);
+          doc.text(`${t.trainset_id}  —  ${t.status}`, margin + 22, y);
+          y += lineHeight;
+
+          // details
+          doc.setFontSize(10);
+          doc.setFont(undefined, "normal");
+          doc.setTextColor(60);
+          const leftColX = margin + 22;
+          const rightColX = pageWidth / 2 + 12;
+
+          doc.text(`Branding: ${t.branding_hours} hrs`, leftColX, y);
+          doc.text(`Mileage: ${t.mileage_km} km`, rightColX, y);
+          y += lineHeight;
+
+          doc.text(`Decision: ${t.decision}`, leftColX, y);
+          doc.text(`Date: ${t.date}`, rightColX, y);
+          y += lineHeight + 12;
+        } else {
+          y += 8;
+        }
+      });
+
+      // Footer with correct page numbers
+      drawFooter(pageIndex + 1, pages.length);
     });
 
-    // After writing content, draw footers with correct total page count
-    const totalPages = pages.length || pageNum;
-    // If there are more pages created after initial counting, ensure totalPages >= pageNum
-    const finalTotal = Math.max(totalPages, pageNum);
-
-    // Redraw footer on each page with correct numbering
-    for (let i = 1; i <= finalTotal; i++) {
-      doc.setPage(i);
-      drawFooter(i, finalTotal);
-    }
-
-    // Save with safe filename
     const safeName = `KMRL_Recommended_Plan_${currentDate.replace(/[\s,]/g, "_")}.pdf`;
     doc.save(safeName);
   };
